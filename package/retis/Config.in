@@ -1,0 +1,16 @@
+config BR2_PACKAGE_RETIS
+	bool "retis"
+	depends on BR2_PACKAGE_HOST_RUSTC_TARGET_ARCH_SUPPORTS
+	depends on BR2_i386 || BR2_86_64 || BR2_aarch64
+	select BR2_PACKAGE_HOST_CLANG
+	select BR2_PACKAGE_HOST_JQ
+	select BR2_PACKAGE_HOST_LLVM
+	select BR2_PACKAGE_HOST_RUSTC
+	select BR2_PACKAGE_ELFUTILS
+	select BR2_PACKAGE_LIBPCAP
+	select BR2_PACKAGE_PYTHON3
+	select BR2_PACKAGE_ZLIB
+	help
+	  Tracing packets in the Linux networking stack.
+
+	  https://retis.readthedocs.io/
