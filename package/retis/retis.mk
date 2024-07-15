@@ -4,8 +4,10 @@
 #
 ################################################################################
 
-RETIS_VERSION = 1.4.0
-RETIS_SITE = $(call github,retis-org,retis,v$(RETIS_VERSION))
+#RETIS_VERSION = 1.4.0
+#RETIS_SITE = $(call github,retis-org,retis,v$(RETIS_VERSION))
+RETIS_SITE = ../retis
+RETIS_SITE_METHOD = local
 RETIS_LICENSE = GPLv2
 RETIS_LICENSE_FILES = LICENSE
 
