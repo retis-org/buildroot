@@ -53,6 +53,16 @@ PKG_CARGO_ENV = \
 	CARGO_HOST_RUSTFLAGS="$(addprefix -C link-args=,$(HOST_LDFLAGS))" \
 	CARGO_TARGET_$(call UPPERCASE,$(RUSTC_TARGET_NAME))_LINKER=$(notdir $(TARGET_CROSS))gcc
 
+# cc-rs (https://docs.rs/cc/latest/cc/) is widely used in Rust crates
+# to compile non-Rust files and handle cross-compilation. However such
+# crate could be either included in the target application and/or in
+# build scripts (build.rs). When the latter happens, $CC and/or
+# $CLFAGS, if set, will be used even though the target is the host. Fix
+# those cases by providing an host specific CC and CFLAGS.
+PKG_CARGO_ENV += \
+	CC_$(subst -,_,$(RUSTC_HOST_NAME))="$(HOSTCC)" \
+	CFLAGS_$(subst -,_,$(RUSTC_HOST_NAME))="$(HOST_CFLAGS)"
+
 # We always set both CARGO_PROFILE_DEV and CARGO_PROFILE_RELEASE
 # as we are unable to select a build profile using the environment.
 #
