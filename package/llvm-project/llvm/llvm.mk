@@ -71,7 +71,7 @@ LLVM_TARGETS_TO_BUILD += AMDGPU
 endif
 
 # Build BPF backend
-ifeq ($(BR2_PACKAGE_LLVM_BPF),y)
+ifeq ($(BR2_PACKAGE_LLVM_TARGET_BPF),y)
 LLVM_TARGETS_TO_BUILD += BPF
 endif
 
